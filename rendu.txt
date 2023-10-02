@@ -1,0 +1,11 @@
+Changement de noms en anglais pour avoir une cohérence tout au long de l'application :
+- `fonctions.js` devient `functions.js`
+
+Choix fait : Création d'une méthode suplémentaire degreeetoRadians pour éviter de la répétition de code
+
+Tests:
+- Test des 3 manières de calculer la distance :
+Le résultat attendu est 0.7704891374924807
+node functions/functions.js
+node functions/objet.js
+node functions/objetbis.js
