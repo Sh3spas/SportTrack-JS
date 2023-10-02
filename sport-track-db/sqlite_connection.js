@@ -23,4 +23,4 @@ class SqliteConnection {
 }
 
 // Export the connection to the SQLite database.
-export default new SqliteConnection().getConnection();
+module.exports = new SqliteConnection().getConnection();
