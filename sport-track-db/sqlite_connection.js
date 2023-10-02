@@ -14,13 +14,13 @@ class SqliteConnection {
   }
 
   /**
-   * Obtient la connexion à la base de données SQLite.
-   * @returns {sqlite3.Database} La connexion à la base de données SQLite.
+   * Get the connection to the SQLite database.
+   * @returns {sqlite3.Database} The connection to the SQLite database.
    */
   getConnection() {
     return this.db;
   }
 }
 
-// Crée une instance unique de SqliteConnection et l'exporte
+// Export the connection to the SQLite database.
 export default new SqliteConnection().getConnection();
