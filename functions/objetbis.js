@@ -1,16 +1,12 @@
-// Creation of a class for the distance calculation function
+// Creation of a class CalculDistance using "this" for the distance calculation functions
 
 /**
  * @name CalculDistance
  * @description Classe used to calculate the distance between two points
  */
-class CalculDistance {
+var CalculDistance = function () {
 
-    constructor() {
-        this.R = 6378.137; // km
-    }
-
-    calculDistance2PointsGPS(lat1, long1, lat2, long2) {
+    this.calculDistance2PointsGPS = function (lat1, long1, lat2, long2) {
         // Convert to radians
         lat1 = this.degreesToRadians(lat1);
         long1 = this.degreesToRadians(long1);
@@ -21,7 +17,7 @@ class CalculDistance {
         return this.R * Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(long2 - long1));
     }
 
-    calculDistanceTrajet(parcours) {
+    this.calculDistanceTrajet = function (parcours) {
         let distance = 0;
 
         for (let i = 0; i < parcours.length - 1; i++) {
@@ -36,7 +32,7 @@ class CalculDistance {
         return distance;
     }
 
-    degreesToRadians(degrees) {
+    this.degreesToRadians = function (degrees) {
         return (Math.PI * degrees) / 180;
     }
 }

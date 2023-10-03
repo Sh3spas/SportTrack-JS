@@ -2,7 +2,7 @@ Changement de noms en anglais pour avoir une cohérence tout au long de l'applic
 - `fonctions.js` devient `functions.js`
 
 Choix fait : 
-- Création d'une méthode suplémentaire degreeetoRadians pour éviter de la répétition de code
+- Création d'une méthode suplémentaire degreesToRadians pour éviter de la répétition de code
 - Dans le package sport-track-db:
 -- Le userDAO utilise des Callbacks alors que les ActivityDAO et ActivityDAO utilisent des Promises
 
