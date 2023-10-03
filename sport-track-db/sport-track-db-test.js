@@ -129,7 +129,7 @@ async function testActivityDAO() {
         console.log('Activité trouvée par ID:', foundActivity);
 
         console.log('[+] Test de recherche d\'une activité par e-mail de l\'utilisateur');
-        const userActivities = await activityDao.findByUser('user@example.com');
+        const userActivities = await activityDao.findByUser('simon.lechanu@example.com');
         console.log('[-] Activités trouvées par e-mail de l\'utilisateur:', userActivities);
 
         console.log('[+] Test de suppression d\'une activité');
