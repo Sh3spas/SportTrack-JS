@@ -1,5 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  include header
+  .titleBox
+    h1.sport SportTrack
+    h1.titre L'application numéro 1 pour les sportifs !
+      p.text Nous sommes votre partenaire ultime pour atteindre vos objectifs sportifs. Que vous soyez un athlète professionnel ou un amateur passionné. Rejoignez-nous et découvrez la différence avec SportTrack, votre allié vers l'excellence sportive.
+  .centerButton
+      a.but(href="/users/add") Nous Rejoindre
+      a.but(href="/users/connect") Se connecter
+  include footer
+
