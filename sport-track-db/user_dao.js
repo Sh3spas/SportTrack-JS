@@ -85,5 +85,4 @@ var UserDAO = function () {
   };
 };
 
-var dao = new UserDAO();
-module.exports = dao;
+module.exports = new UserDAO();

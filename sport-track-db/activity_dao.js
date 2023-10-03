@@ -2,10 +2,6 @@ const db = require('./sqlite_connection');
 
 var ActivityDAO = function () {
 
-    this.getInstance = function(){
-        return new ActivityDAO();
-    }
-
     this.findByUser = function(user_email){
         return new Promise((resolve, reject) => {
             db.all('SELECT * FROM activity WHERE email = ?', [user_email], (err, rows) => {
@@ -83,3 +79,5 @@ var ActivityDAO = function () {
         });
     }
 }
+
+module.exports = new ActivityDAO();
