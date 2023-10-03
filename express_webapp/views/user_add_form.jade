@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  include header
+  .inscription-form
+    h1.Sous_titre Inscription - SportTrack
+    section.error
+        form(action='' method='post')
+            p Nom :
+            input(type='text' name='lastname' required='')
+            p Prenom :
+            input(type='text' name='firstname')
+            p Date de naissance
+            input(type='date' name='dateOfBirth' required='')
+            p Sexe
+            .radio_button
+                input(type='radio' name='gender' value='M')
+                | M
+                input(type='radio' name='gender' value='F')
+                | F
+                input(type='radio' name='gender' value='U')
+                | NB
+            p Taille
+            input(type='number' name='size' required='')
+            p Poid
+            input(type='number' name='weight' required='')
+            p Adresse Email
+            input(type='email' name='email' required='')
+            p Votre Mot de passe :
+            input(type='password' name='password' required='')
+            br
+            input.envoyer(type='submit' value='Envoyer')
+
+include footer
+
