@@ -12,31 +12,27 @@ var UserDAO = function () {
 
     db.run(query, params, function (err) {
       if (err) {
-        console.error('Erreur lors de l\'insertion de l\'utilisateur:', err.message);
         callback(err);
       } else {
-        console.log(`Utilisateur inséré avec succès, ID: ${this.lastID}`);
-        callback(null, this.lastID);
+        callback(null);
       }
     });
   };
 
-  this.update = function (key, values, callback) {
+  this.update = function (values, callback) {
     const { email, password, firstName, lastName, dateOfBirth, gender, height, weight } = values;
     const query = `
       UPDATE User
-      SET email = ?, password = ?, firstName = ?, lastName = ?, dateOfBirth = ?, gender = ?, height = ?, weight = ?
+      SET password = ?, firstName = ?, lastName = ?, dateOfBirth = ?, gender = ?, height = ?, weight = ?
       WHERE email = ?
     `;
-    const params = [email, password, firstName, lastName, dateOfBirth, gender, height, weight, key];
+    const params = [email, password, firstName, lastName, dateOfBirth, gender, height, weight];
 
     db.run(query, params, function (err) {
       if (err) {
-        console.error('Erreur lors de la mise à jour de l\'utilisateur:', err.message);
         callback(err);
       } else {
-        console.log(`Utilisateur mis à jour avec succès, lignes modifiées: ${this.changes}`);
-        callback(null, this.changes);
+        callback(null);
       }
     });
   };
@@ -46,10 +42,8 @@ var UserDAO = function () {
 
     db.run(query, [key], function (err) {
       if (err) {
-        console.error('Erreur lors de la suppression de l\'utilisateur:', err.message);
         callback(err);
       } else {
-        console.log(`Utilisateur supprimé avec succès, lignes supprimées: ${this.changes}`);
         callback(null, this.changes);
       }
     });
@@ -60,10 +54,8 @@ var UserDAO = function () {
 
     db.all(query, [], function (err, rows) {
       if (err) {
-        console.error('Erreur lors de la récupération de tous les utilisateurs:', err.message);
         callback(err, null);
       } else {
-        console.log('Récupération de tous les utilisateurs avec succès.');
         callback(null, rows);
       }
     });
@@ -74,11 +66,20 @@ var UserDAO = function () {
 
     db.get(query, [key], function (err, row) {
       if (err) {
-        console.error('Erreur lors de la recherche de l\'utilisateur par clé:', err.message);
         callback(err, null);
       } else {
-        console.log('Recherche de l\'utilisateur par clé réussie.');
-        callback(null, row);
+        const userObject = { // We create a user object
+          email: row.email,
+          password: row.password,
+          firstName: row.firstName,
+          lastName: row.lastName,
+          dateOfBirth: row.dateOfBirth,
+          gender: row.gender,
+          height: row.height,
+          weight: row.weight,
+        };
+        
+        callback(null, userObject);
       }
     });
   };
