@@ -29,6 +29,11 @@ router.get('/disconnect', function(req, res, next) {
     res.render('user_disconnect',[]);
 });
 
+/* Update */
+router.get('/update', function(req, res, next) {
+    res.render('user_update',[]);
+});
+
 
 
 

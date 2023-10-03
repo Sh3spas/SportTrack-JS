@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  include header
+  .inscription-form
+    h1.Sous_titre Modifier Son Compte
+    form(action='' method='post')
+        p Prénom : 
+        input(type='text' name='firstname' value='' required='')
+        p nom :
+        input(type='text' name='lastname' value='' required='')
+        p Date de naissance
+        input(type='date' name='dateOfBirth' value='' required='')
+        p Sexe
+        .radio_button
+        input(type='radio' name='gender' value='M')
+        | M
+        input(type='radio' name='gender' value='F')
+        | F
+        input(type='radio' name='gender' value='U')
+        | NB
+        p Taille
+        input(type='number' name='height' value='' required='')
+        p Poid
+        input(type='number' name='weight' value='' required='')
+        p Votre Mot de passe :
+        input(type='text' name='password' value='' required='')
+        br
+        input.envoyer(type='submit' value='Modifier')
+
+  include footer
+
