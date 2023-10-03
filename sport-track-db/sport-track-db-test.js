@@ -74,7 +74,7 @@ function searchUser() {
         if (err) {
             console.error('[!] Erreur lors de la recherche de l\'utilisateur:', err);
         } else {
-            console.log(`[-] Utilisateur trouvé avec succès: ${user.email}`);
+            console.log('[-] Utilisateur trouvé avec succès:', user);
             deleteUser();
         }
     });
@@ -87,6 +87,7 @@ function deleteUser() {
             console.error('[!] Erreur lors de la suppression de l\'utilisateur:', err);
         } else {
             console.log(`[-] Utilisateur supprimé avec succès`);
+            launchTestActivityDAO();
         }
     });
 };
@@ -139,10 +140,10 @@ async function testActivityDAO() {
     }
 }
 
-// Test the activity DAO with an user 
-userDao.insert(userValues, (err) => { // Callback
-    console.log('[+] Test de l\'ajout d\'un utilisateur');
-    if (!err) {
+function launchTestActivityDAO() {
+    // Test the activity DAO with an user
+    userDao.insert(userValues, (err) => { // Callback
+        console.log('[+] Test de l\'ajout d\'un utilisateur');
         testActivityDAO();
-    }
-});
+    });
+};

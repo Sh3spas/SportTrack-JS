@@ -68,18 +68,7 @@ var UserDAO = function () {
       if (err) {
         callback(err, null);
       } else {
-        const userObject = { // We create a user object
-          email: row.email,
-          password: row.password,
-          firstName: row.firstName,
-          lastName: row.lastName,
-          dateOfBirth: row.dateOfBirth,
-          gender: row.gender,
-          height: row.height,
-          weight: row.weight,
-        };
-        
-        callback(null, userObject);
+        callback(null, row);
       }
     });
   };

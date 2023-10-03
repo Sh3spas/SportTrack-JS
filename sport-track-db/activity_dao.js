@@ -16,7 +16,7 @@ var ActivityDAO = function () {
 
     this.findById = function(id){
         return new Promise((resolve, reject) => {
-            db.all('SELECT * FROM activity WHERE id = ?', [id], (err, rows) => {
+            db.all('SELECT * FROM activity WHERE idAct = ?', [id], (err, rows) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -44,7 +44,7 @@ var ActivityDAO = function () {
         return new Promise((resolve, reject) => {
             this.findById(activity.id).then((rows) => {
                 if(rows.length > 0){
-                    db.run('UPDATE activity SET name = ?, date = ?, startTime = ?, duration = ?, distance = ?, minHeartRate = ?, maxHeartRate = ?, avgHeartRate = ?, email = ? WHERE id = ?'
+                    db.run('UPDATE activity SET name = ?, date = ?, startTime = ?, duration = ?, distance = ?, minHeartRate = ?, maxHeartRate = ?, avgHeartRate = ?, email = ? WHERE idAct = ?'
                     ,[activity.name, activity.date, activity.startTime, activity.duration, activity.distance, activity.minHeartRate, activity.maxHeartRate, activity.avgHeartRate, activity.email, activity.id]
                     ,function (err) {
                         if (err) {
@@ -65,7 +65,7 @@ var ActivityDAO = function () {
         return new Promise((resolve, reject) => {
             this.findById(id).then((rows) => {
                 if(rows.length > 0){
-                    db.run('DELETE FROM activity WHERE id = ?', [id], (err) => {
+                    db.run('DELETE FROM activity WHERE idAct = ?', [id], (err) => {
                         if (err) {
                             reject(err);
                         } else {
