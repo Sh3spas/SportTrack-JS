@@ -1,3 +1,4 @@
 /node_modules
 /sport-track-db/node_modules/
 /sport-track-db/sport_track.db
+/express_webapp/node_modules/

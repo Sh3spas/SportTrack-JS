@@ -1,5 +1,5 @@
 const sqlite3 = require('sqlite3').verbose(); // Verbose for more detailed stack traces
-const DB_FILE = './sport_track.db';
+const DB_FILE = '../sport-track-db/sport_track.db';
 
 class SqliteConnection {
   constructor() {
