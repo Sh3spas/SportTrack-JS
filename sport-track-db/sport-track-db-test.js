@@ -1,5 +1,6 @@
 const userDao = require('./user_dao');
 const activityDao = require('./activity_dao');
+const activityEntry = require('./activity_entry_dao');
 
 // Test the connexion to the database
 var db = require('./sport-track-db').db_connection;
