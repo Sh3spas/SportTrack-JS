@@ -2,83 +2,82 @@ const db = require('./sqlite_connection');
 
 var ActivityEntryDAO = function () {
 
-  this.findByUser = function(user_email) {
-    return new Promise((resolve, reject) => {
-      db.all('SELECT * FROM Activity WHERE email = ?', [user_email], (err, rows) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(rows);
-        }
-      });
-    });
-  }
-
-  this.findById = function(id) {
-    return new Promise((resolve, reject) => {
-      db.all('SELECT * FROM Activity WHERE idAct = ?', [id], (err, rows) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(rows);
-        }
-      });
-    });
-  }
-
-  this.insert = function(activity) {
-    return new Promise((resolve, reject) => {
-      db.run('INSERT INTO Activity (name, date, startTime, duration, distance, minHeartRate, maxHeartRate, avgHeartRate, email) VALUES (?, ?, ?, ?, ?, ?, ? , ? , ?)',
-        [activity.name, activity.date, activity.startTime, activity.duration, activity.distance, activity.minHeartRate, activity.maxHeartRate, activity.avgHeartRate, activity.email],
-        function (err) {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(this.lastID);
-          }
-        });
-    });
-  }
-
-  this.update = function(activity) {
-    return new Promise((resolve, reject) => {
-      this.findById(activity.idAct).then((rows) => {
-        if (rows.length > 0) {
-          db.run('UPDATE Activity SET name = ?, date = ?, startTime = ?, duration = ?, distance = ?, minHeartRate = ?, maxHeartRate = ?, avgHeartRate = ?, email = ? WHERE idAct = ?',
-            [activity.name, activity.date, activity.startTime, activity.duration, activity.distance, activity.minHeartRate, activity.maxHeartRate, activity.avgHeartRate, activity.email, activity.idAct],
-            function (err) {
-              if (err) {
-                reject(err);
-              } else {
-                resolve(this.lastID);
-              }
+    this.findById = function(id){
+        return new Promise((resolve, reject) => {
+            db.all('SELECT * FROM ActivityEntry WHERE idAData = ?', [id], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
             });
-        } else {
-          reject("Activity not found");
-        }
+        });
+    }
 
-      });
-    });
-  }
+    this.findByActivity = function(activityId){
+        return new Promise((resolve, reject) => {
+            db.all('SELECT * FROM ActivityEntry WHERE idAct = ?', [activityId], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+    }
 
-  this.delete = function(id) {
-    return new Promise((resolve, reject) => {
-      this.findById(id).then((rows) => {
-        if (rows.length > 0) {
-          db.run('DELETE FROM Activity WHERE idAct = ?', [id], (err) => {
-            if (err) {
-              reject(err);
-            } else {
-              resolve();
-            }
-          });
-        } else {
-          reject("Activity not found");
-        }
-      });
-    });
-  }
-  
+    this.insert = function(entry){
+        return new Promise((resolve, reject) => {
+            db.run('INSERT INTO ActivityEntry (time, heartRate, latitude, longitude, altitude, idAct) VALUES (?, ?, ?, ?, ?, ?)'
+            ,[entry.time, entry.heartRate, entry.latitude, entry.longitude, entry.altitude, entry.idAct]
+            ,function (err) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(this.lastID);
+                }
+            });
+        });
+    }
+
+    this.update = function(entry){
+        return new Promise((resolve, reject) => {
+            this.findById(entry.idAData).then((rows) => {
+                if(rows.length > 0){
+                    db.run('UPDATE ActivityEntry SET time = ?, heartRate = ?, latitude = ?, longitude = ?, altitude = ?, idAct = ? WHERE idAData = ?'
+                    ,[entry.time, entry.heartRate, entry.latitude, entry.longitude, entry.altitude, entry.idAct, entry.idAData]
+                    ,function (err) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(this.lastID);
+                        }
+                    });
+                } else {
+                    reject("ActivityEntry not found");
+                }
+                
+            });
+        });
+    }
+
+    this.delete = function(id){
+        return new Promise((resolve, reject) => {
+            this.findById(id).then((rows) => {
+                if(rows.length > 0){
+                    db.run('DELETE FROM ActivityEntry WHERE idAData = ?', [id], (err) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve();
+                        }
+                    });
+                } else {
+                    reject("ActivityEntry not found");
+                }
+            });
+        });
+    }
 }
 
 module.exports = new ActivityEntryDAO();
