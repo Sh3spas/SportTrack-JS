@@ -8,7 +8,12 @@ var ActivityEntryDAO = function () {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(rows);
+                    if(rows.length > 0){
+                        resolve(rows);
+                    }
+                    else{
+                        reject("ActivityEntry not found");
+                    }
                 }
             });
         });

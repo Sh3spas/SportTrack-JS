@@ -95,6 +95,7 @@ function deleteUser() {
 
 // For testing the activity DAO, we use another method: promises
 async function testActivityDAO() {
+    console.log('\n \n -------------------------------------------------------------------------------\n Test ActivityDAO \n')
     try {
         console.log('[+] Test de l\'ajout d\'une activité')
         const activityId = await activityDao.insert({
@@ -139,6 +140,7 @@ async function testActivityDAO() {
     } catch (error) {
         console.error('[!] Erreur lors des tests:', error);
     }
+    launchTestActivityEntryDAO();
 }
 
 function launchTestActivityDAO() {
@@ -147,4 +149,61 @@ function launchTestActivityDAO() {
         console.log('[+] Test de l\'ajout d\'un utilisateur');
         testActivityDAO();
     });
+};
+
+async function testActivityEntryDAO() {
+
+    console.log('\n \n -------------------------------------------------------------------------------\n Test ActivityEntry \n')
+
+    try {
+        const myActivityEntry = {
+            time: 10,
+            heartRate: 10,
+            latitude: 10,
+            longitude: 10,
+            altitude: 10,
+            idAct: 1,
+        };
+
+        console.log('[+] Test de l\'ajout d\'une activité Entry')
+        const insertActivityEntry = await activityEntry.insert(myActivityEntry);
+        console.log(`[-] Activité insérée avec succès`);
+
+        console.log('[+] Test de find une activité avec son idEntry')
+        const findActivityEntry = await activityEntry.findById(1);
+        console.log(`[-] Activité trouvé avec succès`, findActivityEntry);
+
+        console.log('[+] Test de find une activité avec son id')
+        const findActivityEntryWithId = await activityEntry.findByActivity(1);
+        console.log(`[-] Activité trouvé avec succès`, findActivityEntryWithId);
+
+        const my2ActivityEntry = {
+            idAData: 1,
+            time: 15,
+            heartRate: 14,
+            latitude: 13,
+            longitude: 11,
+            altitude: 12,
+            idAct: 1,
+        }
+
+        console.log('[+] Test de update une activité')
+        const updateActivityEntry = await activityEntry.update(my2ActivityEntry);
+        console.log(`[-] Activité update avec succès, ID :`,updateActivityEntry);
+
+        console.log('[+] Test de delete une activité')
+        const deleteActivityEntry = await activityEntry.delete(1);
+        console.log(`[-] Activité delete avec succès`,);
+
+        
+
+
+    }catch (error) {
+        console.error('[!] Erreur lors des tests:', error);
+    }
+
+}
+
+function launchTestActivityEntryDAO() {
+        testActivityEntryDAO();
 };
