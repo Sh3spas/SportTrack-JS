@@ -23,5 +23,13 @@ router.get('/connect/valid', function(req, res, next) {
     res.render('user_connect_valid',[]);
 });
 
+/* Disconnect */
+
+router.get('/disconnect', function(req, res, next) {
+    res.render('user_disconnect',[]);
+});
+
+
+
 
 module.exports = router;
