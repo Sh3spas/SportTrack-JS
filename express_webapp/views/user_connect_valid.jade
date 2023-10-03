@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  include header
+  .titleBox
+    h1.sport SportTrack
+    h1.titre L'application numéro 1 pour les sportifs !
+    h3.subtitle
+        | Bonjour
+        // ?= $_SESSION['fullname'] ?
+        | !
+    h1
+  .centerButton
+    a.but(href='/activity_add') Ajouter une activité
+    a.but(href='/activity_list') Voir mes Activités
+
+
+
+  include footer
+
