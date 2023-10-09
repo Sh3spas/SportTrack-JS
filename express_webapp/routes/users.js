@@ -18,26 +18,6 @@ router.get('/add/valid', function(req, res, next) {
 });
 
 
-/*Connexion*/
-
-router.get('/connect', function(req, res, next) {
-    res.render('user_connect_form',[]);
-});
-
-router.post('/connect', function(req, res, next) {
-    res.render('user_connect_valid',[]);
-});
-
-router.get('/connect/valid', function(req, res, next) {
-    res.render('user_connect_valid',[]);
-});
-
-/* Disconnect */
-
-router.get('/disconnect', function(req, res, next) {
-    res.render('user_disconnect',[]);
-});
-
 /* Update */
 router.get('/update', function(req, res, next) {
     res.render('user_update',[]);
