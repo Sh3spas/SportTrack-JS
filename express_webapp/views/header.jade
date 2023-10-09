@@ -14,9 +14,19 @@ html(lang='en')
               img.logo(src='../images/logo.png', alt='logo')
           li.btn
             a(href='/') Accueil
-          li.btn
-            a(href='/users/add') S'inscrire
-          li.btn
-            a(href='/connect') Se connecter
-          li.btn
-            a(href='/about_us') À propos
+            - if (session.user)
+              li.btn
+                a(href='/activities') Mes activitées
+              li.btn
+                a(href='/addActivity') Ajouter une activité
+              li.btn
+                a(href='/users/update') Mon compte
+              li.btn
+                a(href='/disconnect') Se déconnecter
+            - else
+              li.btn
+                a(href='/users/add') S'inscrire
+              li.btn
+                a(href='/connect') Se connecter
+            li.btn
+              a(href='/about_us') À propos

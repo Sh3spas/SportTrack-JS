@@ -4,14 +4,17 @@ block content
   include header
   .formulaire
     h1.Sous_titre Connection - SportTrack
+    section.error
+      if error
+        .error-message= error
+
     form(action='' method='post')
         p Email :
         input(type='email' name='email' required='')
         p Mot de passe :
         input(type='password' name='password' required='')
         br
-        input.envoyer(type='submit' value='Se Connecter')
+        input(type='submit', value='Se Connecter', class='envoyer')
 
 
   include footer
-
