@@ -6,6 +6,9 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var users = require('./routes/users');
+var connect = require('./routes/connect');
+var disconnect = require('./routes/disconnect');
+
 const { disconnect } = require('process');
 
 var app = express();
