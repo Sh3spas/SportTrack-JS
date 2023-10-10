@@ -4,29 +4,37 @@ block content
   include header
   .inscription-form
     h1.Sous_titre Modifier Son Compte
+    - if (typeof error !== 'undefined')
+      section.error
+        h3= error
+
+    - if (typeof message !== 'undefined')
+      section.message
+        h3= message
+
     form(action='' method='post')
-        p Prénom : 
-        input(type='text' name='firstname' value='' required='')
-        p nom :
-        input(type='text' name='lastname' value='' required='')
-        p Date de naissance
-        input(type='date' name='dateOfBirth' value='' required='')
-        p Sexe
-        .radio_button
-        input(type='radio' name='gender' value='M')
+      p Prénom :
+      input(type='text' name='firstName' value=session.user.firstName required='')
+      p Nom :
+      input(type='text' name='lastName' value=session.user.lastName required='')
+      p Date de naissance
+      input(type='date' name='dateOfBirth' value=session.user.dateOfBirth required='')
+      p Sexe
+      .radio_button
+        input(type='radio' name='gender' value='M' checked=session.user.gender === 'M')
         | M
-        input(type='radio' name='gender' value='F')
+        input(type='radio' name='gender' value='F' checked=session.user.gender === 'F')
         | F
-        input(type='radio' name='gender' value='U')
+        input(type='radio' name='gender' value='U' checked=session.user.gender === 'U')
         | NB
-        p Taille
-        input(type='number' name='height' value='' required='')
-        p Poid
-        input(type='number' name='weight' value='' required='')
-        p Votre Mot de passe :
-        input(type='text' name='password' value='' required='')
-        br
-        input.envoyer(type='submit' value='Modifier')
+      p Taille
+      input(type='number' name='height' value=session.user.height required='')
+      p Poid
+      input(type='number' name='weight' value=session.user.weight required='')
+      p Votre Mot de passe :
+      input(type='password' name='password' value=session.user.password required='')
+      br
+      input.envoyer(type='submit' value='Modifier')
 
   include footer
 

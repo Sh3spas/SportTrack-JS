@@ -10,9 +10,9 @@ router.get('/add', (req, res, next) => {
 
 router.post('/add', (req, res, next) => {
   const { email, password, firstName, lastName, dateOfBirth, gender, height, weight } = req.body;
-  const values = { email, password, firstName, lastName, dateOfBirth, gender, height, weight };
+  const user = { email, password, firstName, lastName, dateOfBirth, gender, height, weight };
 
-  user_dao.insert(values, (err) => {
+  user_dao.insert(user, (err) => {
     if (err) {
       // Gestion des erreurs SQLite
       res.render('user_add_form', { error: err.message });
@@ -23,12 +23,33 @@ router.post('/add', (req, res, next) => {
 });
 
 /* Modification du compte */
-router.get('/update', function(req, res, next) {
-    res.render('user_update',[]);
+router.get('/update', function (req, res, next) {
+    if (!req.session.email) {
+    res.redirect('/connect');
+    return;
+  }
+  
+  res.render('user_update', []);
 });
 
-router.post('/update', function(req, res, next) {
-    res.render('user_update',[]);
+router.post('/update', function (req, res, next) {
+  if (!req.session.email) {
+    res.redirect('/connect');
+    return;
+  }
+
+  const { password, firstName, lastName, dateOfBirth, gender, height, weight } = req.body;
+  const user = { email: req.session.email, password, firstName, lastName, dateOfBirth, gender, height, weight };
+
+  user_dao.update(user, (err) => {
+    if (err) {
+      // Gestion des erreurs SQLite
+      res.render('user_update', { error: err.message });
+    } else {
+      req.session.user = user;
+      res.render('user_update', { message: 'Informations mises à jour !' });
+    }
+  });
 });
 
 module.exports = router;

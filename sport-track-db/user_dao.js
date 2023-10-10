@@ -21,16 +21,20 @@ var UserDAO = function () {
 
   this.update = function (values, callback) {
     const { email, password, firstName, lastName, dateOfBirth, gender, height, weight } = values;
+
     const query = `
       UPDATE User
       SET password = ?, firstName = ?, lastName = ?, dateOfBirth = ?, gender = ?, height = ?, weight = ?
       WHERE email = ?
     `;
-    const params = [email, password, firstName, lastName, dateOfBirth, gender, height, weight];
+    
+    const params = [password, firstName, lastName, dateOfBirth, gender, height, weight, email];
 
     db.run(query, params, function (err) {
       if (err) {
         callback(err);
+      }  else if (this.changes === 0) {
+        callback(new Error("Aucun utilisateur n'a été modifié."));
       } else {
         callback(null);
       }
