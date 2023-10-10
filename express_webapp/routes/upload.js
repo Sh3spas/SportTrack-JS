@@ -76,7 +76,7 @@ router.post('/', function (req, res, next) {
 
               activity_entry_dao.insert(activityEntry);
             }
-            res.redirect('/activity_list');
+            res.redirect('/activities/list');
           })
           .catch((err) => {
             res.render('upload', { error: err.message });

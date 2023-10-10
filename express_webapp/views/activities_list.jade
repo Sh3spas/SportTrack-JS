@@ -14,27 +14,20 @@ block content
             h3.grid-item Frequence Min
             h3.grid-item Frequence Max
             h3.grid-item Frequence Avg
-            
-        // ?php foreach ($data as $activity): ?
-        .grid
-            h4.grid-item
-            // ?= $activity['name']?
-            h4.grid-item
-            // ?= $activity['date']?
-            h4.grid-item
-            // ?= $activity['startTime']?
-            h4.grid-item
-            // ?= $activity['duration']?
-            h4.grid-item
-            // ?= round($activity['distance'],2)? km
-            h4.grid-item
-            // ?= $activity['minHeartRate']?
-            h4.grid-item
-            // ?= $activity['maxHeartRate']?
-            h4.grid-item
-            // ?= $activity['avgHeartRate']?
-            // ?php endforeach; ?
+
+        each activity in activities
+            .grid
+                h4.grid-item= activity['name']
+                h4.grid-item= activity['date']
+                h4.grid-item= activity['startTime']
+                h4.grid-item= activity['duration']
+                h4.grid-item= `${Math.round(activity['distance'] * 100) / 100} km`
+                h4.grid-item= activity['minHeartRate']
+                h4.grid-item= activity['maxHeartRate']
+                h4.grid-item= activity['avgHeartRate']
+
+
         .centerButton
             button.but
-                a(href='/activities/add') Ajouter une activité
+                a(href='/upload') Ajouter une activité
     include footer

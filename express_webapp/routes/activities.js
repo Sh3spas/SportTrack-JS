@@ -1,13 +1,23 @@
 var express = require('express');
+const session = require('express-session');
 var router = express.Router();
+var activity_dao = require('sport-track-db').activity_dao;
+
 
 /* GET home page. */
 router.get('/list', function(req, res, next) {
-  res.render('activities_list');
-});
+  if (!req.session.email) {
+    res.redirect('/connect');
+    return;
+  }
 
-router.get('/add', function(req, res, next) {
-    res.render('upload');
+  activity_dao.findByUser(req.session.email).then((rows) => {
+    if(rows.length == 0){
+      res.render('activities_list', {activities: []});
+    }else{
+      res.render('activities_list', {activities: rows});
+    }
+  });
 });
 
 module.exports = router;
