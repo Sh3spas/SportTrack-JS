@@ -14,7 +14,7 @@ html(lang='en')
               img.logo(src='../images/logo.png', alt='logo')
           li.btn
             a(href='/') Accueil
-            - if (session.user)
+            - if (session && session.user)
               li.btn
                 a(href='/activities') Mes activitées
               li.btn

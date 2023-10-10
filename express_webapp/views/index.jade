@@ -5,13 +5,17 @@ block content
   .titleBox
     h1.sport SportTrack
     h1.titre L'application numéro 1 pour les sportifs !
+    - if (!session.user)
       p.text Nous sommes votre partenaire ultime pour atteindre vos objectifs sportifs. Que vous soyez un athlète professionnel ou un amateur passionné. Rejoignez-nous et découvrez la différence avec SportTrack, votre allié vers l'excellence sportive.
-  .centerButton
-      - if (session.user)
-        a.but(href="/users/add") Voir Activités
-        a.but(href="/connect") Ajouter Activité
-      - else
+      .centerButton
         a.but(href="/users/add") Nous Rejoindre
         a.but(href="/connect") Se connecter
+    - else
+      h3.subtitle
+        | Bonjour #{fullname}
+      h1
+      .centerButton
+        a.but(href="/users/add") Voir mes Activités
+        a.but(href="/connect") Ajouter une Activité
   include footer
 
