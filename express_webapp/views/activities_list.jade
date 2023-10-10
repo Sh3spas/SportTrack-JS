@@ -1,0 +1,40 @@
+extends layout
+
+block content
+    include header
+    .activite
+        .centerButton
+            h1.titre Vos Activités : 
+        .grid
+            h3.grid-item Nom
+            h3.grid-item Date
+            h3.grid-item Heure départ
+            h3.grid-item Durée
+            h3.grid-item Distance
+            h3.grid-item Frequence Min
+            h3.grid-item Frequence Max
+            h3.grid-item Frequence Avg
+            
+        // ?php foreach ($data as $activity): ?
+        .grid
+            h4.grid-item
+            // ?= $activity['name']?
+            h4.grid-item
+            // ?= $activity['date']?
+            h4.grid-item
+            // ?= $activity['startTime']?
+            h4.grid-item
+            // ?= $activity['duration']?
+            h4.grid-item
+            // ?= round($activity['distance'],2)? km
+            h4.grid-item
+            // ?= $activity['minHeartRate']?
+            h4.grid-item
+            // ?= $activity['maxHeartRate']?
+            h4.grid-item
+            // ?= $activity['avgHeartRate']?
+            // ?php endforeach; ?
+        .centerButton
+            button.but
+                a(href='/activities/add') Ajouter une activité
+    include footer
