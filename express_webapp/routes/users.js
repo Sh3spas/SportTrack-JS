@@ -47,6 +47,7 @@ router.post('/update', function (req, res, next) {
       res.render('user_update', { error: err.message });
     } else {
       req.session.user = user;
+      req.session.fullName = user.firstName + ' ' + user.lastName;
       res.render('user_update', { message: 'Informations mises à jour !' });
     }
   });
