@@ -3,12 +3,16 @@ extends layout
 block content
   include header
   .formulaire
-    h1.Sous_titre
-      f Ajouter des Activités
+    h1.Sous_titre Ajouter des Activités
+    
+    section.error
+      if error
+        .error-message= error
+    
     form(method='post' enctype='multipart/form-data')
       p Inserrez un nouveau fichier :
       input#filename(type='text' name='filename')
-      input(type='file' accept='.json' name='file')
+      input(type='file' accept='.json' name='foo')
       br
       input(type='submit' name='submit' value='Envoyer')
       script.

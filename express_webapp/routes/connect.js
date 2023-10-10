@@ -19,9 +19,9 @@ router.post('/', function (req, res, next) {
             if (user && user.password === password) {
                 req.session.user = user;
                 req.session.email = user.email;
-                req.session.fullname = `${user.firstName} ${user.lastName}`;
+                req.session.fullName = `${user.firstName} ${user.lastName}`;
 
-                res.render('user_connect_valid', { fullname: req.session.fullname });
+                res.render('user_connect_valid', { fullName: req.session.fullName });
             } else {
                 res.render('user_connect_form', { error: 'Adresse e-mail ou mot de passe incorrect' });
             }

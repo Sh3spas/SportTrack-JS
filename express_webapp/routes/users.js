@@ -48,6 +48,7 @@ router.post('/update', function (req, res, next) {
     } else {
       req.session.user = user;
       req.session.fullName = user.firstName + ' ' + user.lastName;
+      res.locals.session = req.session;
       res.render('user_update', { message: 'Informations mises à jour !' });
     }
   });
