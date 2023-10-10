@@ -10,6 +10,8 @@ var users = require('./routes/users');
 var connect = require('./routes/connect');
 var disconnectt = require('./routes/disconnect');
 
+var upload = require('./routes/upload');
+
 var app = express();
 app.use(session({
   secret: 'chut',
@@ -38,6 +40,7 @@ app.use('/', indexRouter);
 app.use('/users', users);
 app.use('/connect', connect);
 app.use('/disconnect', disconnectt);
+app.use('/upload', upload);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
