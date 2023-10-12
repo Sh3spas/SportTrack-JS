@@ -95,7 +95,13 @@ function calculDuree(heureDebut, heureFin) {
   const minutes = Math.floor((differenceEnSecondes % 3600) / 60);
   const secondes = differenceEnSecondes % 60;
 
-  return `${heures}:${minutes}:${secondes}`; // Formatage de la durée
+  const heuresFormatees = heures < 10 ? `0${heures}` : heures;
+  const minutesFormatees = minutes < 10 ? `0${minutes}` : minutes;
+  const secondesFormatees = secondes < 10 ? `0${secondes}` : secondes;
+
+  const duree = `${heuresFormatees}:${minutesFormatees}:${secondesFormatees}`;
+  return duree;
+
 }
 
 /**

@@ -11,6 +11,9 @@ router.get('/', function(req, res, next) {
         res.locals.session = req.session;
         res.render('user_disconnect',[]);
     }
+    else{
+        res.redirect('/connect');
+    }
 });
 
 
