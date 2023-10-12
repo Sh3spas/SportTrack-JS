@@ -20,4 +20,15 @@ router.get('/list', function(req, res, next) {
   });
 });
 
+router.post('/delete', function (req, res, next) {
+  if (!req.session.email) {
+    res.redirect('/connect');
+    return;
+  }
+
+  activity_dao.delete(req.body.id).then(() => {
+    res.redirect('/activities/list');
+  });
+});
+
 module.exports = router;

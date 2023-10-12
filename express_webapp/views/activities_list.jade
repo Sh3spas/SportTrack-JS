@@ -14,6 +14,7 @@ block content
             h3.grid-item Frequence Min
             h3.grid-item Frequence Max
             h3.grid-item Frequence Avg
+            h3.grid-item Supprimer
 
         each activity in activities
             .grid
@@ -25,6 +26,11 @@ block content
                 h4.grid-item= activity['minHeartRate']
                 h4.grid-item= activity['maxHeartRate']
                 h4.grid-item= activity['avgHeartRate']
+                h4.grid-item
+                    form(method='POST' action='/activities/delete')
+                        input(type='hidden' name='id' value=activity['idAct'])
+                        button(type='submit') Supprimer
+
 
 
         .centerButton
