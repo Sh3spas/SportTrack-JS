@@ -39,7 +39,7 @@ Pour exécuter les tests unitaires, utiliser les commandes suivantes :
    npm run test
    ```
 
-2. Pour tester le calcul de distances entre des points GPS, 3 fichiers fonctions, 3 commandes a taper a partir du dossier functions:
+2. Pour tester le calcul de distances entre des points GPS, 3 fichiers fonctions, 3 commandes a taper a partir du dossier functions :
    ```
    node functions/functions.js
    node functions/objet.js
@@ -51,7 +51,7 @@ Si dans la console il apparait des lignes commençant par `[!]` alors les tests 
 ## Auteurs
 Ce projet a été réalisé par [Baptiste GUERNY](https://github.com/BatLeDev) et [Simon Le CHANU](https://github.com/Sh3spas) dans le cadre de notre BUT Informatique à l'IUT de Vannes.
 
-## Précision pour les ensiegnants
+## Précision pour les enseignants
 Choix fait : 
 - Création d'une méthode suplémentaire degreesToRadians pour éviter de la répétition de code
 - Dans le package sport-track-db:

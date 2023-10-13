@@ -4,7 +4,8 @@
   "description": "database for SportTrack Web Application",
   "main": "sport-track-db.js",
   "scripts": {
-    "reset-db": "rm sport_track.db && sqlite3 sport_track.db < create_db.sql",
+    "create-db": "sqlite3 sport_track.db < create_db.sql",
+    "reset-db": "rm sport_track.db && npm run create-db",
     "test": "npm run reset-db && node sport-track-db-test.js"
 },
   "author": "GUERNY Baptiste - LeCHANU Simon",
