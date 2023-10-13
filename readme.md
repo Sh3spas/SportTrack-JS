@@ -20,6 +20,10 @@ SportTrack est une application web qui permet aux utilisateurs de sauvegarder et
     ```
     npm install
     ```
+    Dans le dossier sport-track-db, faire de même
+    ```
+    npm install
+    ```
 
 ## Démarrage du Serveur
 
