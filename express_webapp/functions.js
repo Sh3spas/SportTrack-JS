@@ -1,6 +1,6 @@
 // Simple creation of distance calculation functions
 
-// To avoid writing '' each time
+// To avoid writing Math. before each function
 const { acos, cos, sin, PI } = Math;
 
 /**
